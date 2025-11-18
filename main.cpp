@@ -102,7 +102,7 @@ void Q2() {
 
     current = start;
     prev = nullptr;
-    while (current != nullptr){
+    while (current != nullptr) {
         next = current->nextNode;
         current->nextNode = prev;
         prev = current;
@@ -113,16 +113,16 @@ void Q2() {
     p = start;
 
     cout << "Result: ";
-    while (p != nullptr){
+    while (p != nullptr) {
         cout << p->data;
         p = p->nextNode;
     }
 
 }
 
-void Q3(){
-    int n1,n2, data;
-    Node *start1 = nullptr,*start2 = nullptr, *current1, *current2, *prev1 = nullptr, *prev2 = nullptr, *p;
+void Q3() {
+    int n1, n2, data;
+    Node *start1 = nullptr, *start2 = nullptr, *current1, *current2, *prev1 = nullptr, *prev2 = nullptr, *p;
     cout << "Enter the first list size: ";
     cin >> n1;
     cout << "Enter the first lists numbers: ";
@@ -156,20 +156,20 @@ void Q3(){
     }
 
     p = start1;
-    while (p->nextNode != nullptr){
+    while (p->nextNode != nullptr) {
         p = p->nextNode;
     }
     p->nextNode = start2;
     p = start1;
     cout << "Result: ";
-    while (p != nullptr){
+    while (p != nullptr) {
         cout << p->data;
         p = p->nextNode;
     }
 }
 
 void Q4() {
-    int n,k,index =1, data;
+    int n, k, index = 1, data;
     Node *start = nullptr, *current, *prev = nullptr, *p;
     cout << "Enter the list size: ";
     cin >> n;
@@ -192,11 +192,11 @@ void Q4() {
 
     p = start;
     cout << "Result: ";
-    while (p != p->nextNode){
-        if (index % (k-1) == 0){
+    while (p != p->nextNode) {
+        if (index % (k - 1) == 0) {
             p->nextNode = p->nextNode->nextNode;
             p = p->nextNode;
-        }else{
+        } else {
             p = p->nextNode;
         }
         index++;
@@ -226,7 +226,7 @@ void Q5() {
 
     current = start;
     prev = nullptr;
-    while (current != nullptr){
+    while (current != nullptr) {
         next = current->nextNode;
         current->nextNode = prev;
         prev = current;
@@ -239,11 +239,67 @@ void Q5() {
     cout << "Result: ";
     cout << p->data;
     p = p->nextNode;
-    while (p != start){
+    while (p != start) {
         cout << p->data;
         p = p->nextNode;
     }
 
+}
+
+class Stack {
+    Node *start = nullptr, *lastNode = nullptr;
+
+public:
+    void push(int data) {
+        if (start == nullptr) {
+            start = new Node();
+            start->data = data;
+            start->nextNode = nullptr;
+            lastNode = start;
+        } else {
+            Node *current = new Node();
+            current->data = data;
+            current->nextNode = nullptr;
+            lastNode->nextNode = current;
+            lastNode = current;
+        }
+    }
+
+    void pop() {
+        if (start != nullptr) {
+            Node *current = start, *toPop;
+            if (current->nextNode == nullptr) {
+                toPop = start;
+                start = nullptr;
+                lastNode = nullptr;
+            } else {
+                while (current->nextNode->nextNode) {
+                    current = current->nextNode;
+                }
+                toPop = current->nextNode;
+                current->nextNode = nullptr;
+                lastNode = current;
+            }
+            cout << toPop->data;
+        }else{
+            cout << "No data in list";
+        }
+    }
+};
+
+void Q6() {
+    int n, data;
+    cout << "Enter the n: ";
+    cin >> n;
+    Stack stack;
+    cout << "Enter numbers: ";
+    for (int i = 0; i < n; ++i) {
+        cin >> data;
+        stack.push(data);
+    }
+    for (int i = 0; i < n; ++i) {
+         stack.pop();
+    }
 }
 
 void menu() {
@@ -277,6 +333,7 @@ void menu() {
             Q5();
             break;
         case 6:
+            Q6();
             break;
         default:
             clearScreen();
