@@ -268,7 +268,7 @@ void menu() {
             Q2();
             break;
         case 3:
-//            Q3();
+            Q3();
             break;
         case 4:
 //            Q4();
