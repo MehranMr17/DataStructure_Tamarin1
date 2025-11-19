@@ -281,7 +281,7 @@ public:
                 lastNode = current;
             }
             cout << toPop->data;
-        }else{
+        } else {
             cout << "No data in list";
         }
     }
@@ -298,8 +298,52 @@ void Q6() {
         stack.push(data);
     }
     for (int i = 0; i < n; ++i) {
-         stack.pop();
+        stack.pop();
     }
+}
+
+class Queue {
+    Node *front = nullptr, *rear = nullptr;
+
+public:
+    void enqueue(int data) {
+        Node *current = new Node();
+        current->data = data;
+        current->nextNode = nullptr;
+        if (rear == nullptr) {
+            front = rear = current;
+            return;
+        }
+        rear->nextNode = current;
+        rear = current;
+    }
+
+    void dequeue() {
+        if (front == nullptr) {
+            cout << "Queue is empty";
+        }
+
+        int data = front->data;
+        front = front->nextNode;
+        cout << data << " ";
+
+    }
+};
+
+void Q7() {
+    int n, data;
+    cout << "Enter the n: ";
+    cin >> n;
+    Queue queue;
+    cout << "Enter numbers: ";
+    for (int i = 0; i < n; ++i) {
+        cin >> data;
+        queue.enqueue(data);
+    }
+    for (int i = 0; i < n; ++i) {
+        queue.dequeue();
+    }
+
 }
 
 void menu() {
@@ -310,6 +354,7 @@ void menu() {
     cout << " 4. Q4 => The Josephus Problem" << endl;
     cout << " 5. Q5 => Reverse circular linked list" << endl;
     cout << " 6. Q6 => Stack using linked list" << endl;
+    cout << " 7. Q7 => Queue using linked list" << endl;
 
     cout << endl << "Witch question do you wanna run?";
 
@@ -334,6 +379,9 @@ void menu() {
             break;
         case 6:
             Q6();
+            break;
+        case 7:
+            Q7();
             break;
         default:
             clearScreen();
