@@ -1,6 +1,5 @@
 #include <iostream>
 #include <bits/stdc++.h>
-#include <windows.h>
 
 using namespace std;
 using namespace std::chrono;
@@ -73,7 +72,9 @@ void Q1() {
     cout << endl << "insertion sort:" << endl;
     insertionSort(numbersForInsertion, n);
 
+
     menu();
+
 }
 
 struct Node {
